@@ -6,8 +6,8 @@
 package sort;
 
 @FunctionalInterface
-interface IntArraySorter {
-    void sort(int[] arr, boolean ascending)
+interface ArraySorter<T> {
+    void sort(T arr, boolean ascending);
 }
 
 final class SortUtils {
@@ -18,10 +18,24 @@ final class SortUtils {
         return ascending ? left > right : left < right
     }
 
-    static int[] sortedCopy(int[] arr, boolean ascending, IntArraySorter sorter) {
+    static boolean shouldSwap(String left, String right, boolean ascending) {
+        if (left == null || right == null) return false;
+        int cmp = left.compareTo(right);
+        return ascending ? cmp > 0 : cmp < 0;
+    }
+
+    static int[] sortedCopy(int[] arr, boolean ascending, ArraySorter<int[]> sorter) {
         if (arr == null) return null;
 
         int[] copy = arr.clone();
+        sorter.sort(copy, ascending);
+        return copy;
+    }
+
+    static String[] sortedCopy(String[] arr, boolean ascending, ArraySorter<String[]> sorter) {
+        if (arr == null) return null;
+        
+        String[] copy = arr.clone();
         sorter.sort(copy, ascending);
         return copy;
     }

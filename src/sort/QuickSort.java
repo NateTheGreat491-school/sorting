@@ -9,6 +9,7 @@ public final class QuickSort {
 
     private QuickSort() {}
 
+    // INTEGER SORTING
     public static void sort(int[] arr) {
         sort(arr, true);
     }
@@ -22,6 +23,23 @@ public final class QuickSort {
     }
 
     public int[] sortedCopy(int[] arr, boolean ascending) {
+        return SortUtils.sortedCopy(arr, ascending, QuickSort::sort);
+    }
+    
+    // STRING SORTING
+    public static void sort(String[] arr) {
+        sort(arr, true);
+    }
+
+    public static void sort(String[] arr, boolean ascending) {
+
+    }
+
+    public static String[] sortedCopy(String[] arr) {
+        return sortedCopy(arr, true);
+    }
+
+    public static String[] sortedCopy(String[] arr, boolean ascending) {
         return SortUtils.sortedCopy(arr, ascending, QuickSort::sort);
     }
 }

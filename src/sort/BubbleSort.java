@@ -8,7 +8,8 @@ package sort;
 public final class BubbleSort {
 
     private BubbleSort() {} 
-
+    
+    // INTEGER SORTING
     public static void sort(int[] arr) {
         sort(arr, true);
     }
@@ -42,6 +43,23 @@ public final class BubbleSort {
     }
 
     public static int[] sortedcopy(int[] arr, boolean ascending) {
+        return SortUtils.sortedCopy(arr, ascending, BubbleSort::sort);
+    }
+    
+    // STRING SORTING
+    public static void sort(String[] arr) {
+        sort(arr, true);
+    }
+
+    public static void sort(String[] arr, boolean ascending) {
+
+    }
+
+    public static String[] sortedCopy(String[] arr) {
+        return sortedCopy(arr, true);
+    }
+
+    public static String[] sortedCopy(String[] arr, boolean ascending) {
         return SortUtils.sortedCopy(arr, ascending, BubbleSort::sort);
     }
 }
