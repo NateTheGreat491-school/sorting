@@ -2,3 +2,5 @@
 *.odt
 *.swp
 *.~lock.*
+scripts/*
+submit/*

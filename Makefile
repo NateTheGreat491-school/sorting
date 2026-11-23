@@ -3,7 +3,7 @@
 # Origin:  2026-11-23
 # Edited:  2026-11-23
 
-.PHONY: all jar run rebuild clean
+.PHONY: all jar run rebuild clean submission
 
 JAVAC	:= javac
 JAVA	:= java
@@ -44,3 +44,6 @@ rebuild: clean all
 
 clean:
 	rm -rf $(BLD_DIR)
+
+submission:
+	./scripts/makeSubmission
