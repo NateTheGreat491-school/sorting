@@ -1,1 +1,4 @@
-*.docx *.odt *.swp *.~lock.*
+*.docx
+*.odt
+*.swp
+*.~lock.*
