@@ -1,28 +1,27 @@
 # File:    Makefile
 # Devs:    Nathan W. Barros
 # Origin:  2026-11-23
-# Edited:  2026-11-23
+# Edited:  2026-11-26
 
 .PHONY: all jar run rebuild clean submission
 
-JAVAC	:= javac
-JAVA	:= java
-MAKE	:= make
-JAR		:= jar
-JFLAGS	:= -encoding UTF-8
+JAVAC   := javac
+JAVA    := java
+JAR     := jar
+JFLAGS  := -encoding UTF-8
 
-SRC_DIR	:= src
-BLD_DIR	:= build
-CLS_DIR	:= $(BLD_DIR)/class
+SRC_DIR := src
+BLD_DIR := build
+CLS_DIR := $(BLD_DIR)/class
 
-MAIN_CLASS	:= $(BLD_DIR)/main.Main
-JAR_FILE	:= $(BLD_DIR)/sorting.jar
-SRC_FILES	:= $(wildcard $(SRC_DIR)/*/*.java)
+MAIN       := main.Main
+JAR_FILE   := $(BLD_DIR)/sorting.jar
+SRC_FILES  := $(wildcard $(SRC_DIR)/*/*.java)
 
 RUN_AS ?= class
 
-all: $(CLS_DIR):
-	$(JAVAC) $(JFLAGS) -d $(CLS_DIR) -sourcepath $(SRC_DIR) $(SRC)
+all: $(SRC_FILES) | $(CLS_DIR)
+	$(JAVAC) $(JFLAGS) -d $(CLS_DIR) -sourcepath $(SRC_DIR) $(SRC_FILES)
 
 $(CLS_DIR):
 	mkdir -p $(CLS_DIR)
@@ -30,7 +29,7 @@ $(CLS_DIR):
 jar: $(JAR_FILE)
 
 $(JAR_FILE): all
-	$(JAR) cfe $(JAR_FILE) $(MAIN) -C $(CLS_DIR)
+	$(JAR) cfe $(JAR_FILE) $(MAIN) -C $(CLS_DIR) .
 
 run: all
 ifeq ($(RUN_AS),jar)
