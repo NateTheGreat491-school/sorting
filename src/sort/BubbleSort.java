@@ -25,11 +25,9 @@ public final class BubbleSort {
             lastIndex = arrlen - 1 - pass;
 
             for (int i=0; i < lastIndex; i++) {
-                canSwap = SortUtils.shouldSwap(arr[i], arr[i+1], ascending);
+                canSwap    = SortUtils.shouldSwap(arr[i], arr[i+1], ascending);
                 if (canSwap) {
-                    temp    = arr[i];
-                    arr[i]  = arr[i+1];
-                    arr[i+1]  = temp;
+                    SortUtils.swap(arr, i, i+1);
                     swapped = true;
                 }
             }
@@ -42,7 +40,7 @@ public final class BubbleSort {
         return sortedCopy(arr, true);
     }
 
-    public static int[] sortedcopy(int[] arr, boolean ascending) {
+    public static int[] sortedCopy(int[] arr, boolean ascending) {
         return SortUtils.sortedCopy(arr, ascending, BubbleSort::sort);
     }
     
@@ -52,6 +50,26 @@ public final class BubbleSort {
     }
 
     public static void sort(String[] arr, boolean ascending) {
+        if (arr == null || arr.length < 2) return;
+        int arrlen, lastIndex;
+        String temp;
+        boolean swapped, canSwap;
+        
+        arrlen = arr.length;
+        for (int pass=0; pass < arrlen-1; pass++) {
+            swapped = false;
+            lastIndex = arrlen - 1 - pass;
+
+            for (int i=0; i < lastIndex; i++) {
+                canSwap = SortUtils.shouldSwap(arr[i], arr[i+1], ascending);
+                if (canSwap) {
+                    SortUtils.swap(arr, i, i+1);
+                    swapped  = true;
+                }
+            }
+
+            if (!swapped) break;
+        }
 
     }
 
