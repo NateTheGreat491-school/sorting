@@ -4,4 +4,3 @@
 *.~lock.*
 scripts/*
 submit/*
-build/*
