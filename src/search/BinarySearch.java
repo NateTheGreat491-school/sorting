@@ -10,47 +10,53 @@ public final class BinarySearch {
     private BinarySearch() {}
 
     public static int find(int[] arr, int val) {
-        int startI = 0;
-        int endI = arr.length - 1;
+        if (arr == null) return -1;
 
-        while (true) {
-            int middleIndex = (endI - startI) / 2 + startI;
+        int startOfBlock = 0;
+        int endOfBlock   = arr.length -1;
 
-            if (endI - startI == 0) {
-                return arr[middleIndex] == val ? middleIndex : -1;
-            }
+        while (startOfBlock <= endOfBlock) {
+            int middleOfBlock = startOfBlock + (endOfBlock - startOfBlock) / 2;
+            int currentValue  = arr[middleOfBlock];
 
-            if (arr[middleIndex] == val) {
-                return middleIndex;
-            } else if (val < arr[middleIndex]) {
-                endI = middleIndex - 1;
+            if (currentValue == val)  {
+                return middleOfBlock;
+            } else if (currentValue < val) {
+                startOfBlock = middleOfBlock + 1;
             } else {
-                startI = middleIndex + 1;
+                endOfBlock = middleOfBlock - 1;
             }
         }
-    }
 
-    public static int find(int[] arr, int val) {
-        int start = 0;
-        int end = arr.length - 1;
-
-        while (true) {
-            int index = (end - start) / 2 + start;
-            if (arr[index] == val) break;
-            if (end - start == 0)  index = -1; break;
-
-            if (val < arr[index]) {
-                index = 
-            } else {
-
-            }
-        }
-        if (index == -1) index = (arr[index] == val) ? index : -1;
-        return index;
+        return -1;
     }
 
     public static int find(String[] arr, String val) {
+        if (arr == null || val == null) return -1;
 
+        int startOfBlock = 0;
+        int endOfBlock = arr.length - 1;
+
+        while (startOfBlock <= endOfBlock) {
+            int middleOfBlock = startOfBlock + (endOfBlock - startOfBlock) / 2;
+            String currentValue = arr[middleOfBlock];
+
+            if (currentValue == null) {
+                endOfBlock = middleOfBlock - 1;
+                continue;
+            }
+
+            int cmp = currentValue.compareTo(val);
+            if (cmp == 0) {
+                return middleOfBlock;
+            } else if (cmp < 0) {
+                startOfBlock = middleOfBlock + 1;
+            } else {
+                endOfBlock = middleOfBlock - 1;
+            }
+        }
+
+        return -1;
     }
 
 }
